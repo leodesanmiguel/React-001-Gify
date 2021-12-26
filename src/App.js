@@ -12,12 +12,12 @@ function App() {
   return (
     <div className="App">
       <section className="App-content">
-        {gifs.map(singleGif =>
+        {gifs.map(({id, title, url}) =>
           <Gif 
-          key={singleGif.id}
-          title={singleGif.title} 
-          url={singleGif.url} 
-          id={singleGif.id} />
+          key={id}
+          title={title} 
+          url={url} 
+          id={id} />
         )}
       </section>
     </div>
