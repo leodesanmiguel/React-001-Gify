@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const apiURL = 'https://api.giphy.com/v1/gifs/search?api_key=XBXAw6y6bjgTEFBWeS5oAj2dNvquIrTv&q=cat&limit=10&offset=0&rating=g&lang=en';
 
-export default App;
+function App() {
+    const [gifs, setGifs] = useState([]);
+
+    useEffect(function() {
+        console.log('actualizando los gifs')
+        fetch(apiURL)
+            .then(res => res.json())
+            .then(response => {
+                const { data } = response;
+                const gifs = data.map(imagenes => imagenes.images.downsized_medium.url);
+                setGifs(gifs);
+                console.log(gifs);
+            })
+
+    }, []);
+
+
+    return ( <
+        div className = "App" >
+        <
+        section className = "App-content" > {
+            gifs.map(singleGif => < img src = { singleGif }
+                />)
+            } < /
+            section > <
+            /div>
+        );
+    }
+
+    export default App;
