@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import getGifs from "./services/getGifs";
-import ListofGifs from "./components/ListofGifs";
-function App() {
-  const [gifs, setGifs] = useState([]);
+import ListOfGifs from "./components/ListOfGifs";
 
-  useEffect(function() {
-    getGifs({ keyword: "argentina" }).then(gifs => setGifs(gifs));
-  }, []);
 
+export default function App() {
   return (
     <div className="App">
       <section className="App-content">
-        <ListofGifs gifs={gifs} />
+        <ListOfGifs keyword='ecuador' />
       </section>
     </div>
   );
 }
 
-export default App;
+
